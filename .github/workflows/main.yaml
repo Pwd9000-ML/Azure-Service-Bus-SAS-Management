@@ -36,7 +36,7 @@ jobs:
           
           $serviceBusNameSpace="${{ env.SB_NAMESPACE }}"
           $serviceBusQueueName="${{ env.SB_QUEUE_NAME }}"
-          $keyVaultSbSasSecretName="${{ env.SB_POLICY_SAS_NAME  }}"
+          $keyVaultSbSasSecretName="${{ env.SB_POLICY_SAS_NAME }}"
           $body = $message.Body
           $message.psobject.properties.Remove("Body")
 
