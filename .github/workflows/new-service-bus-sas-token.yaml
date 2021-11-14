@@ -1,5 +1,8 @@
 name: New Service Bus SAS Token
-on: [workflow_call]
+
+on: 
+  workflow_dispatch:
+#on: [workflow_call]
 
 jobs:
   new-sas-token:
