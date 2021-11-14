@@ -1,7 +1,7 @@
 # Azure-Service-Bus-SAS-Management
 Repository to maintain and manage Azure Service Bus SAS tokens
 
-[![Update Azure VM passwords](https://github.com/Pwd9000-ML/Azure-VM-Password-Management/actions/workflows/rotate-vm-passwords.yaml/badge.svg)](https://github.com/Pwd9000-ML/Azure-VM-Password-Management/actions/workflows/rotate-vm-passwords.yaml)
+[![New Service Bus SAS Token](https://github.com/Pwd9000-ML/Azure-Service-Bus-SAS-Management/actions/workflows/new-service-bus-sas-token.yaml/badge.svg)](https://github.com/Pwd9000-ML/Azure-Service-Bus-SAS-Management/actions/workflows/new-service-bus-sas-token.yaml)
 
 This repository hosts github workflows which can be used to automate and generate short lived usable Azure Service Bus SAS tokens and stores them inside of an Azure Key Vault.
 See my [blog post](https://dev.to/pwd9000/automate-azure-service-bus-sas-tokens-with-github-37ok) for full details :smile:
