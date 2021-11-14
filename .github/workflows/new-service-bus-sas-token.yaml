@@ -17,7 +17,7 @@ jobs:
     - name: Log into Azure using github secret AZURE_CREDENTIALS
       uses: Azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        credentials: ${{ secrets.AZURE_CREDENTIALS }}
         enable-AzPSSession: true
 
     - name: Get Service Bus Policy Key
