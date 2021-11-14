@@ -6,4 +6,4 @@ Repository to maintain and manage Azure Service Bus SAS tokens
 This repository hosts github workflows which can be used to automate and generate short lived usable Azure Service Bus SAS tokens and stores them inside of an Azure Key Vault.
 See my [blog post](https://dev.to/pwd9000/automate-azure-service-bus-sas-tokens-with-github-37ok) for full details :smile:
 
-With the workflows published on this repo you can implement and automate Azure Service bus SAS tokens using reusable github action workflows. The post above also explains in detail a new github actions workflow feature by using a reusable GitHub workflow as a job to handle temporary SAS token generation.  
+With the workflows published on this repo you can implement and automate Azure Service bus SAS tokens using reusable github action workflows. The post above also explains in detail a new github actions workflow feature by using a reusable GitHub workflow as a job to generate short lived Service Bus SAS tokens.  
