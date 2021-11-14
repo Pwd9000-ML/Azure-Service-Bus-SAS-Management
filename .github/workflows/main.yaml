@@ -36,12 +36,12 @@ jobs:
             
             $serviceBusNameSpace="${{ env.SB_NAMESPACE }}"
             $serviceBusQueueName="${{ env.SB_QUEUE_NAME }}"
-            $keyVaultSbSasSecretName="${{ env.SB_POLICY_SAS_NAME }}"
+            #$keyVaultSbSasSecretName="${{ env.SB_POLICY_SAS_NAME }}"
             $body = $message.Body
             $message.psobject.properties.Remove("Body")
 
             $URI = "https://$serviceBusNameSpace.servicebus.windows.net/$serviceBusQueueName/messages"
-            $token = "${{ steps.sbSasToken.outputs.$keyVaultSbSasSecretName }}"
+            $token = "${{ steps.sbSasToken.outputs.${{ env.SB_POLICY_SAS_NAME }} }}"
             $headers = @{ "Authorization" = "$token"; "Content-Type" = "application/atom+xml;type=entry;charset=utf-8" }
             $headers.Add("BrokerProperties", $(ConvertTo-JSON -InputObject $message -Compress))
 
