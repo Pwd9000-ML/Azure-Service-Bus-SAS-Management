@@ -1,0 +1,50 @@
+name: Send Service Bus Message
+on: 
+  workflow_dispatch:
+
+jobs:
+  send-sb-message:
+    runs-on: windows-latest
+    env:
+      KEY_VAULT_NAME: secrets-vault7839
+      SB_NAMESPACE: githubactions
+      SB_QUEUE_NAME: queue01
+      SB_POLICY_SAS_NAME: myauthrule-SAS-TOKEN
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Log into Azure using github secret AZURE_CREDENTIALS
+      uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        enable-AzPSSession: true
+
+    - name: Get Service Bus SAS Token
+      uses: Azure/get-keyvault-secrets@v1
+      with:
+        keyvault: ${{ env.KEY_VAULT_NAME }}
+        secrets: ${{ env.SB_POLICY_SAS_NAME }}
+      id: sbSasToken
+
+    - name: Send Service Bus Message
+      uses: azure/powershell@v1
+      with:
+        inlineScript: |
+          $message = [pscustomobject] @{ "Body" = "Hello ActionsHackathon21" }
+          
+          $serviceBusNameSpace="${{ env.SB_NAMESPACE }}"
+          $serviceBusQueueName="${{ env.SB_QUEUE_NAME }}"
+          $keyVaultSbSasSecretName="${{ env.SB_POLICY_SAS_NAME  }}"
+          $body = $message.Body
+          $message.psobject.properties.Remove("Body")
+
+          $URI = "https://$serviceBusNameSpace.servicebus.windows.net/$serviceBusQueueName/messages"
+          $token = "${{ steps.sbSasToken.outputs.$keyVaultSbSasSecretName }}"
+          $headers = @{ "Authorization" = "$token"; "Content-Type" = "application/atom+xml;type=entry;charset=utf-8" }
+          $headers.Add("BrokerProperties", $(ConvertTo-JSON -InputObject $message -Compress))
+
+          #Invoke rest method
+          $null = Invoke-RestMethod -Uri $URI -Headers $headers -Method "Post" -Body $body
+        azPSVersion: 'latest'
