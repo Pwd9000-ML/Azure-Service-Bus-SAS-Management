@@ -32,19 +32,19 @@ jobs:
       uses: azure/powershell@v1
       with:
         inlineScript: |
-            $message = [pscustomobject] @{ "Body" = "Hello ActionsHackathon21" }
-            
-            $serviceBusNameSpace="${{ env.SB_NAMESPACE }}"
-            $serviceBusQueueName="${{ env.SB_QUEUE_NAME }}"
-            #$keyVaultSbSasSecretName="${{ env.SB_POLICY_SAS_NAME }}"
-            $body = $message.Body
-            $message.psobject.properties.Remove("Body")
+          $message = [pscustomobject] @{ "Body" = "Hello ActionsHackathon21" }
+          
+          $serviceBusNameSpace="${{ env.SB_NAMESPACE }}"
+          $serviceBusQueueName="${{ env.SB_QUEUE_NAME }}"
+          $keyVaultSbSasSecret="steps.sbSasToken.outputs.${{ env.SB_POLICY_SAS_NAME }}"
+          $body = $message.Body
+          $message.psobject.properties.Remove("Body")
 
-            $URI = "https://$serviceBusNameSpace.servicebus.windows.net/$serviceBusQueueName/messages"
-            $token = "${{ steps.sbSasToken.outputs.${{ env.SB_POLICY_SAS_NAME }} }}"
-            $headers = @{ "Authorization" = "$token"; "Content-Type" = "application/atom+xml;type=entry;charset=utf-8" }
-            $headers.Add("BrokerProperties", $(ConvertTo-JSON -InputObject $message -Compress))
+          $URI = "https://$serviceBusNameSpace.servicebus.windows.net/$serviceBusQueueName/messages"
+          $token = "${{ $keyVaultSbSasSecret }}"
+          $headers = @{ "Authorization" = "$token"; "Content-Type" = "application/atom+xml;type=entry;charset=utf-8" }
+          $headers.Add("BrokerProperties", $(ConvertTo-JSON -InputObject $message -Compress))
 
-            #Invoke rest method
-            $null = Invoke-RestMethod -Uri $URI -Headers $headers -Method "Post" -Body $body
+          #Invoke rest method
+          $null = Invoke-RestMethod -Uri $URI -Headers $headers -Method "Post" -Body $body
         azPSVersion: 'latest'
