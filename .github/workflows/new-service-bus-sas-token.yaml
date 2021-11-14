@@ -40,7 +40,7 @@ jobs:
           $accessPolicyKeyName="${{ env.SB_POLICY_KEY_NAME }}"
           $dateTime=(Get-Date).ToString()
           $URI="$serviceBusNameSpace.servicebus.windows.net"
-          $accessPolicyKey="${{ steps.sbPrimaryKey.outputs.$accessPolicyKeyName }}"
+          $accessPolicyKey="${{ steps.sbPrimaryKey.outputs.myauthrulePrimaryKey }}"
           
           #Generate Temp SAS Token
           ##Token expires now+600(10 min)
