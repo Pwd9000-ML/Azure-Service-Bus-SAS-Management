@@ -14,7 +14,7 @@ jobs:
     needs: new-sas-token
     runs-on: windows-latest
     env:
-      KEY_VAULT_NAME: secrets-vault7839
+      KEY_VAULT_NAME: secrets-vault694
       SB_NAMESPACE: githubactions
       SB_QUEUE_NAME: queue01
       SB_POLICY_SAS_NAME: myauthrule-SAS-TOKEN

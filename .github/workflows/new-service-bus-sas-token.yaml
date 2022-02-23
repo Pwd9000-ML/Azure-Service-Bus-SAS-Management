@@ -11,7 +11,7 @@ jobs:
   new-sas-token:
     runs-on: windows-latest
     env:
-      KEY_VAULT_NAME: secrets-vault7839
+      KEY_VAULT_NAME: secrets-vault694
       SB_NAMESPACE: githubactions
       SB_POLICY_NAME: myauthrule
       SB_POLICY_KEY_NAME: myauthrulePrimaryKey
