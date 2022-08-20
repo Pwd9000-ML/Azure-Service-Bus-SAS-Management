@@ -1,7 +1,7 @@
 # Azure-Service-Bus-SAS-Management
 Repository to maintain and manage Azure Service Bus SAS tokens
 
-[![New Service Bus SAS Token](https://github.com/Pwd9000-ML/Azure-Service-Bus-SAS-Management/actions/workflows/new-service-bus-sas-token.yaml/badge.svg)](https://github.com/Pwd9000-ML/Azure-Service-Bus-SAS-Management/actions/workflows/new-service-bus-sas-token.yaml)
+[![New Service Bus SAS Token](https://github.com/Pwd9000-ML/Azure-Service-Bus-SAS-Management/actions/workflows/new-service-bus-sas-token.yaml/badge.svg)](https://github.com/Pwd9000-ML/Azure-Service-Bus-SAS-Management/actions/workflows/new-service-bus-sas-token.yaml) [![Dependabot](https://badgen.net/badge/Dependabot/enabled/green?icon=dependabot)](https://dependabot.com/)
 
 ## Video tutorial
 
