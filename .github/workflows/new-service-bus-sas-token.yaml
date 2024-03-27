@@ -34,7 +34,7 @@ jobs:
       id: sbPrimaryKey
 
     - name: Generate Service Bus SAS token
-      uses: azure/powershell@v1
+      uses: azure/powershell@v2
       with:
         inlineScript: |
           $null = [Reflection.Assembly]::LoadWithPartialName("System.Web")

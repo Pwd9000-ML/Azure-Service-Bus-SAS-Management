@@ -37,7 +37,7 @@ jobs:
       id: sbSasToken
 
     - name: Send Service Bus Message
-      uses: azure/powershell@v1
+      uses: azure/powershell@v2
       with:
         inlineScript: |
           $message = [pscustomobject] @{ "Body" = "Hello ActionsHackathon21" }
